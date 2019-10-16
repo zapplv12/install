@@ -1,11 +1,24 @@
 #!/bin/sh
 echo "Installation of zqmg engine"
-
+if test -d ./zqmg
+then
+	echo "installation directory already exists"
+	echo "break"
+	exit 1
+fi
+	
 if test -d $HOME/zqmg
 then
 	echo "installation directory already exists"
 	echo "break"
 	exit 1
+fi
+echo "checking build tools"
+type gcc >/dev/null 2>/dev/null
+if test $? = 1
+then
+	apt-get install build-essential 
+	apt-get install make
 fi
 
 echo "checking python3"
@@ -20,6 +33,7 @@ fi
 echo "checking requirements"
 sudo apt-get install python3-watchdog
 
+echo "checking supervisor"
 type supervisorctl >/dev/null 2>/dev/null
 if test $? = 1
 then
@@ -38,6 +52,7 @@ python3 -m venv ./env
 
 echo "Install additional python components"
 ./env/bin/pip3 install watchdog
+./env/bin/pip3 install magic
 
 echo "cloning engine from github"
 git clone https://github.com/zapplv12/zqmg_engine
@@ -64,6 +79,11 @@ chmod 777 ./zqmg_engine/ev
 mkdir ./zqmg_engine/ev/responses
 chmod 777 ./zqmg_engine/ev/responses
 
+mkdir ./zqmg_engine/ev/subscriptions
+chmod 777 ./zqmg_engine/ev/subscriptions
+
+mkdir ./zqmg_engine/ev/subscriptions/jobs
+chmod 777 ./zqmg_engine/ev/subscriptions/jobs
 
 mkdir ./zqmg_engine/config/seq
 chmod 777 ./zqmg_engine/config/seq
