@@ -52,7 +52,7 @@ python3 -m venv ./env
 
 echo "Install additional python components"
 ./env/bin/pip3 install watchdog
-./env/bin/pip3 install magic
+./env/bin/pip3 install python-magic
 
 echo "cloning engine from github"
 git clone https://github.com/zapplv12/zqmg_engine
