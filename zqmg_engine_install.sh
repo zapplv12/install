@@ -13,13 +13,9 @@ then
 	echo "break"
 	exit 1
 fi
-echo "checking build tools"
-type gcc >/dev/null 2>/dev/null
-if test $? = 1
-then
-	apt-get install build-essential 
-	apt-get install make
-fi
+echo "checking build tools
+apt-get install build-essential 
+apt-get install make
 
 echo "checking python3"
 type python3 >/dev/null 2>/dev/null
@@ -34,11 +30,7 @@ echo "checking requirements"
 sudo apt-get install python3-watchdog
 
 echo "checking supervisor"
-type supervisorctl >/dev/null 2>/dev/null
-if test $? = 1
-then
-	sudo apt-get install supervisor
-fi
+sudo apt-get install supervisor
 
 INSTALL_PATH=`pwd`
 
@@ -128,7 +120,7 @@ echo "}" >>./zqmg_engine/config/zqmg_common.json
 
 echo "preparing supervisor base configuration"
 sudo service supervisor stop
-sudo rm /etc/supervisor/conf.d/zqmg_base.conf
+sudo rm /etc/supervisor/conf.d/zqmg_base.conf >/dev/null 2>/dev/null
 
 zqmghome=`pwd`/zqmg_engine
 sed -e "s@__ZQMG_HOME__@$zqmghome@g" ./zqmg_engine/templates/zqmg_base.tpl >./zqmg_engine/config/supervisor/zqmg_base.conf
