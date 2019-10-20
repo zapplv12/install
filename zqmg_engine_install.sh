@@ -13,7 +13,7 @@ then
 	echo "break"
 	exit 1
 fi
-echo "checking build tools
+echo "checking build tools"
 apt-get install build-essential 
 apt-get install make
 
