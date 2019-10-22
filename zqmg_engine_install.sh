@@ -13,18 +13,17 @@ then
 	echo "break"
 	exit 1
 fi
+echo "updating repository"
+sudo apt-get update
+
 echo "checking build tools"
-apt-get install build-essential 
-apt-get install make
+sudo apt-get install build-essential 
+sudo apt-get install make
 
 echo "checking python3"
-type python3 >/dev/null 2>/dev/null
-if test $? = 1
-then
-	sudo apt-get install python3
-	sudo apt-get install python3-setup-tools
-	sudo apt-get install python3-pip
-fi
+sudo apt-get install python3
+sudo apt-get install python3-venv
+sudo apt-get install python3-pip
 
 echo "checking requirements"
 sudo apt-get install python3-watchdog
