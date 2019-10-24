@@ -1,4 +1,5 @@
 # wget setup_frappe.py | python
+# tested for ubuntu 18.04 LTS using python3
 import os, sys, subprocess, getpass, json, multiprocessing, shutil, platform
 from distutils.spawn import find_executable
 
@@ -14,7 +15,11 @@ def install_bench(args):
 	success = run_os_command({
 		'apt-get': [
 			'sudo apt-get update',
-			'sudo apt-get install -y git build-essential python-setuptools python-dev libffi-dev libssl-dev'
+			'sudo apt-get install -y git build-essential python-setuptools python-dev libffi-dev libssl-dev',
+			'sudo apt-get python3-pip',
+			'sudo apt-get python3-venv',
+			'sudo apt-get supervisor',
+			'sudo apt-get nginx'
 		],
 		'yum': [
 			'sudo yum groupinstall -y "Development tools"',
