@@ -6,6 +6,7 @@ Installation scripts
 ### Add Base User
 
   adduser [mdsbase-user]
+  
   usermod -aG sudo [mdsbase-user]
 
 ### Download installation script
