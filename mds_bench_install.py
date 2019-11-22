@@ -16,10 +16,10 @@ def install_bench(args):
 		'apt-get': [
 			'sudo apt-get update',
 			'sudo apt-get install -y git build-essential python-setuptools python-dev libffi-dev libssl-dev',
-			'sudo apt-get python3-pip',
-			'sudo apt-get python3-venv',
-			'sudo apt-get supervisor',
-			'sudo apt-get nginx'
+			'sudo apt-get install python3-pip',
+			'sudo apt-get install python3-venv',
+			'sudo apt-get install supervisor',
+			'sudo apt-get install nginx'
 		],
 		'yum': [
 			'sudo yum groupinstall -y "Development tools"',
