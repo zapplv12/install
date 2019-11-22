@@ -22,16 +22,29 @@ Installation scripts
 
 `wget https://raw.githubusercontent.com/zapplv12/install/master/mds_bench_install.py`
 
-### Start installatiomn
+### Start installation
 `sudo python3 ./mds_bench_install.py --develop --user [mdsbase-user]`
 
 ### Site anlegen
 `cd /mdsbase-user/frappe-bench`
 `bench new-site your-site-name`
 
+### Ressourcen erstellen und linken
+`cd /mdsbase-user/frappe-bench`
+`bench build`
+
 ### Produktionsmodus aktivieren
 `cd /mdsbase-user/frappe-bench`
 `sudo bench setup production mdsbase-user`
+
+### Anmeldung und Initialisierung
+`Browser starten`
+`http://servername`
+`Mit "Administrator" und dem eingegebenen Kennwort anmelden`
+`Einstellungen durchführen`
+
+VIEL SPASS!
+
 
 ## ZQMG Engine
 
