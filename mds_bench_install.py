@@ -19,7 +19,8 @@ def install_bench(args):
 			'sudo apt-get install python3-pip',
 			'sudo apt-get install python3-venv',
 			'sudo apt-get install supervisor',
-			'sudo apt-get install nginx'
+			'sudo apt-get install nginx',
+			'pip install ansible==2.8.6'
 		],
 		'yum': [
 			'sudo yum groupinstall -y "Development tools"',
@@ -66,7 +67,7 @@ def install_bench(args):
 				})
 
 	success = run_os_command({
-		'pip': "sudo pip install --upgrade setuptools cryptography ansible pip"
+		'pip': "sudo pip install --upgrade setuptools cryptography pip"
 	})
 
 	if not success:
