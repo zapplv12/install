@@ -20,7 +20,7 @@ Installation scripts
 
 ### Download installation script
 
-wget https://raw.githubusercontent.com/zapplv12/install/master/mds_bench_install.py
+`wget https://raw.githubusercontent.com/zapplv12/install/master/mds_bench_install.py`
 
 ### Start installatiomn
 sudo python3 ./mds_bench_install.py --develop --user [mdsbase-user] 
