@@ -1,4 +1,7 @@
 #!/bin/sh
+installdir=$HOME
+user=$LOGNAME
+
 echo "Installation of zqmg engine"
 if test -d ./zqmg
 then
@@ -44,6 +47,10 @@ python3 -m venv ./env
 echo "Install additional python components"
 ./env/bin/pip3 install watchdog
 ./env/bin/pip3 install python-magic
+./env/bin/pip3 install PyPdf2
+./env/bin/pip3 install qrcode
+./env/bin/pip3 install dropbox
+./env/bin/pip3 install scp
 
 echo "cloning engine from github"
 git clone https://github.com/zapplv12/zqmg_engine
@@ -88,7 +95,6 @@ chmod 777 ./zqmg_engine/config/services
 mkdir ./zqmg_engine/config/supervisor
 chmod 777 ./zqmg_engine/config/supervisor
 
-
 echo -n "Enter url of your admin system: "
 read URL
 
@@ -121,22 +127,15 @@ echo "preparing supervisor base configuration"
 sudo service supervisor stop
 sudo rm /etc/supervisor/conf.d/zqmg_base.conf >/dev/null 2>/dev/null
 
-zqmghome=`pwd`/zqmg_engine
-sed -e "s@__ZQMG_HOME__@$zqmghome@g" ./zqmg_engine/templates/zqmg_base.tpl >./zqmg_engine/config/supervisor/zqmg_base.conf
-sudo ln -s $zqmghome/config/supervisor/zqmg_base.conf /etc/supervisor/conf.d/zqmg_base.conf
+sudo ln -s $HOME /home/zqmg
 
-echo "relocation of programs"
-cat ./zqmg_engine/bin/tools/zqmgcmd | sed -e "s@__INSTALL_PATH__@$INSTALL_PATH@g" > ./zqmg_engine/bin/zqmgcmd
-cat ./zqmg_engine/bin/tools/zqmgsql | sed -e "s@__INSTALL_PATH__@$INSTALL_PATH@g" > ./zqmg_engine/bin/zqmgsql
-cat ./zqmg_engine/bin/tools/zqmghttpd | sed -e "s@__INSTALL_PATH__@$INSTALL_PATH@g" > ./zqmg_engine/bin/zqmghttpd
+zqmghome=`pwd`/zqmg_engine
+cp ./zqmg_engine/templates/zqmg_base.tpl >./zqmg_engine/config/supervisor/zqmg_base.conf
+sudo ln -s $zqmghome/config/supervisor/zqmg_base.conf /etc/supervisor/conf.d/zqmg_base.conf
 
 chmod +x ./zqmg_engine/bin/zqmgcmd
 chmod +x ./zqmg_engine/bin/zqmgsql
 chmod +x ./zqmg_engine/bin/zqmghttpd
-
-sudo cp ./zqmg_engine/bin/zqmgcmd /usr/local/bin
-sudo cp ./zqmg_engine/bin/zqmgsql /usr/local/bin
-sudo cp ./zqmg_engine/bin/zqmghttpd /usr/local/bin
 
 if test "$ZQMG_HOME" = ""
 then
