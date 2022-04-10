@@ -141,6 +141,7 @@ def install_bench(args):
 		shutil.rmtree(tmp_bench_repo)
 
 def check_distribution_compatibility():
+	return
 	supported_dists = {'ubuntu': [14, 15, 16, 18], 'debian': [8, 9],
 		'centos': [7], 'macos': [10.9, 10.10, 10.11, 10.12]}
 
