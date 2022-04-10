@@ -157,7 +157,7 @@ def check_distribution_compatibility():
 def get_distribution_info():
 	# return distribution name and major version
 	if platform.system() == "Linux":
-		current_dist = platform.dist()
+		current_dist = platform.version()
 		return current_dist[0].lower(), current_dist[1].rsplit('.')[0]
 	elif platform.system() == "Darwin":
 		current_dist = platform.mac_ver()
